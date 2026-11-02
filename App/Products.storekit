@@ -1,0 +1,31 @@
+{
+  "identifier": "A9EA21AA",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "10000001",
+      "localizations": [
+        {
+          "description": "Unlock the Pro workspace with a one-time purchase.",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "dev.pquanghuy.storekitlab.pro",
+      "referenceName": "Pro Unlock",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA"
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}
