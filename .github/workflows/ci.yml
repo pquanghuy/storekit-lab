@@ -1,0 +1,18 @@
+name: iOS tests
+on: [push, pull_request]
+jobs:
+  storekit:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Choose an available iPhone simulator
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for devices in d["devices"].values() for x in devices if x["name"].startswith("iPhone")))')
+          echo "DEVICE_ID=$DEVICE_ID" >> "$GITHUB_ENV"
+      - name: Test StoreKit flows
+        run: xcodebuild -project StoreKitLab.xcodeproj -scheme StoreKitLab -destination "platform=iOS Simulator,id=$DEVICE_ID" -parallel-testing-enabled NO -resultBundlePath TestResults.xcresult CODE_SIGNING_ALLOWED=NO test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: storekit-test-results
+          path: TestResults.xcresult
